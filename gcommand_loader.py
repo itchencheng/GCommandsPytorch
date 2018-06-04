@@ -40,9 +40,11 @@ def make_dataset(dir, class_to_idx):
 
 
 def spect_loader(path, window_size, window_stride, window, normalize, max_len=101):
+    # sr means sampe-rate
     y, sr = librosa.load(path, sr=None)
-    # n_fft = 4096
+
     n_fft = int(sr * window_size)
+
     win_length = n_fft
     hop_length = int(sr * window_stride)
 
@@ -139,3 +141,4 @@ class GCommandLoader(data.Dataset):
 
     def __len__(self):
         return len(self.spects)
+
